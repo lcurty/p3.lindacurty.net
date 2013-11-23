@@ -10,17 +10,17 @@ $(document).load(function(e) {
 
 // Listeners
 $('input').keyup(calculate);
-//$('select,input[type=checkbox]').change(calculate);
+$('select,input[type=date]').change(calculate);
 
 // Calculation function
 function calculate() {
 	
 	// Data
-	var loan			= $('input[name=loan]').val();
-	var interest 	= $('input[name=interest]').val();
-	var term			= $('input[name=term]').val();
-	var date			= $('input[name=date]').val();
-	var actual		= $('input[name=actual]').val();
+	var loan							= $('input[name=loan]').val();
+	var interest 					= $('input[name=interest]').val();
+	var term							= $('input[name=term]').val();
+	var start_date				= $('input[name=start_date]').val();
+	var actual						= $('input[name=actual]').val();
 
 	// Tabla rasa
 	var minimum						= 0;
@@ -36,14 +36,14 @@ function calculate() {
 	var n_interest				= Math.pow((1 + m_interest),(months))
 	var minimum						= (loan * (m_interest * n_interest)/ (n_interest - 1)).toFixed(2);
 	
-	// Interest first month
+	// Mortgage Table
 	var principle					= loan;
 	var principle_paid		= 0;
 	var total_interest		= 0;
+	var this_month				= new Date(start_date);								
 
 	for (var i=1; i<=months; i++){
-		
-		var this_month			= i
+		var display_month		= $.datepicker.formatDate('MM dd, yy', new Date(this_month));
 		var principle				= (principle - principle_paid).toFixed(2);
 		var interest_paid		= (principle * m_interest).toFixed(2);
 		var payment 				= minimum;
@@ -51,15 +51,17 @@ function calculate() {
 		var total_interest	= (parseFloat(interest_paid) + parseFloat(total_interest)).toFixed(2);
 				mortgage_table	+= 
 													'<tr>' +
-														'<td>' + this_month + '</td>' +
+														'<td>' + display_month + '</td>' +
 														'<td>' + principle + '</td>' +
 														'<td>' + interest_paid + '</td>' +
 														'<td>' + principle_paid + '</td>' +
 														'<td>' + payment + '</td>' +
 														'<td>' + total_interest + '</td>' +
 													'</tr>';
-				
+		var set_month				= this_month.getMonth() + 1
+		this_month.setMonth(set_month);		
 	};
+	
 			
 	var interest_saved		= 0;
 	var years_shortened		= 0;
