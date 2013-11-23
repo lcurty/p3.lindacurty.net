@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<head>
+	<title>Mortgage Payoff Calculator</title>
+	<link rel="stylesheet" href="styles.css" type="text/css">
+</head>
+
+<body>
+
+	<h1>Mortgage Payoff Calculator</h1>
+	Loan Amount: $<input type='text' name='loan'><br><br>
+	Interest Rate: <input type='text' name='interest'>%<br><br>
+	Loan Term (Years): $<input type='text' name='term'><br><br>
+	Start Date: $<input type='text' name='date'><br><br>
+	Actual Monthly Payment: $<input type='text' name='actual'><br><br>
+  
+<!--  <h1>Feedback</h1>
+	Loan Amount: $<span id='loan'>0.00</span> <br><br>
+	Interest Rate: <span id='interest'>0.00</span>% <br><br>
+	Loan Term (Years): $<span id='term'>0.00</span> <br><br>
+	Start Date: $<span id='date'>0.00</span> <br><br>
+	Actual Monthly Payment: $<span id='actual'>0.00</span> <br><br>
+  Monthly Interest: $<span id="m_interest">0.00</span> <br><br>-->
+
+  <h1>Calculations</h1>
+	Minimum Monthly Payment: $<span id='minimum'>0.00</span> <br><br>
+	Total Interest Paid: $<span id='interest_paid'>0.00</span> <br><br>
+	Interest Saved: $<span id='interest_saved'>0.00</span> <br><br>
+	Term Shortened by: <span id='years_shortened'>0.00</span> years, <span id='months_shortened'>0.00</span> months <br><br>
+
+	<h1>Don't forget:</h1>
+	<ul>
+	  <li>One-time extra
+    payment</li>
+	  <li>Changed monthly payment </li>
+	  <li>Loop through by month showing
+	    <ul>
+	      <li>principle	</li>
+	      <li>interest	</li>
+	      <li>principle paid	</li>
+	      <li>payment	</li>
+	      <li>total interest paid	</li>
+	      <li>one-time extra payment	(calculable field)</li>
+	      <li>changed monthly payment (calculable field)</li>
+      </ul>
+	  </li>
+	  <li>Add field for original and new payoff dates</li>
+	  <li>Graph of actual and changes</li>
+</ul>
+	<h1>Idea from:</h1>
+  https://docs.google.com/spreadsheet/ccc?key=0AuRiQTd39nuqdGM0OHB1bmpCQTM4MFpFSTl0UVctYkE#gid=1
+	<br><br>
+  
+	
+	<div id='budget_results'></div>
+	
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	
+	<script>
+	
+		// For every service
+			// Multiply the cost of that service times the # of rooms
+			// Add up the running total	
+	
+		// Listeners
+		$('input').keyup(calculate);
+		//$('select,input[type=checkbox]').change(calculate);
+	
+		// Calculation function
+		function calculate() {
+			
+			// Data
+				var loan			= $('input[name=loan]').val();
+				var interest 	= $('input[name=interest]').val();
+				var term			= $('input[name=term]').val();
+				var date			= $('input[name=date]').val();
+				var actual		= $('input[name=actual]').val();
+
+				// Tabla rasa
+				var minimum						= 0;
+				var interest_paid			= 0;
+				var interest_saved		= 0;
+				var years_shortened		= 0;
+				var months_shortened	= 0;
+				
+				// Calculate minimum payment
+				var m_interest				= interest / 1200;
+				var months						= term * 12
+				var n_interest				= Math.pow((1 + m_interest),(months))
+				var minimum						= (loan * (m_interest * n_interest)/ (n_interest - 1)).toFixed(2);
+				
+				// Interest first month
+				var loop_principal		= loan;
+				var loop_month				=	months;
+				
+				//loop me!
+				var interest_paid			= (principal * m_interest).toFixed(2);
+				var loop_principal		= loop_principal - interest_paid;
+				var loop_month				=	loop_month - 1;
+				
+				var interest_saved		= 0;
+				var years_shortened		= 0;
+				var months_shortened	= 0;
+
+				$('#interest').html(interest);
+				$('#term').html(term);
+				$('#loan').html(loan);
+				$('#m_interest').html(m_interest);
+				$('#minimum').html(minimum);
+				$('#interest_paid').html(interest_paid);
+				$('#interest_saved').html(interest_saved);
+				$('#years_shortened').html(years_shortened);
+				$('#months_shortened').html(months_shortened);
+
+			// Loop through each checkbox
+//			services.each(function() {			
+	//			total += parseInt($(this).val()) * rooms;
+	  //		});
+	
+	  		// Budget calculations
+	  	//	if(budget != '') {
+		//		if(total > budget) {
+			//		var over_or_under     = 'over';
+				//	var budget_difference = total - budget;
+//				}
+	//			else {
+		//			var over_or_under     = 'under';
+			//		var budget_difference = budget - total;
+		//		}
+				
+//				$('#budget_results').html("You are " + over_or_under + " budget by $" + budget_difference);
+	//		}
+			
+		//	$('#total').html(total);
+			
+		}
+	
+	
+	</script>
+
+<body>
