@@ -1,39 +1,53 @@
 <!DOCTYPE html>
 <head>
 	<title>Mortgage Payoff Calculator</title>
-	<link rel="stylesheet" href="styles.css" type="text/css">
+	<link rel="stylesheet" href="styles/styles.css" type="text/css">
   <link rel="stylesheet" href="jquery-ui-1.10.3.custom/css/cupertino/jquery-ui-1.10.3.custom.min.css" type="text/css">
 </head>
 
 <body>
-
-	<h1>Mortgage Payoff Calculator</h1>
-	Loan Amount: $<input type='text' name='loan'><br><br>
-	Interest Rate: <input type='text' name='interest'>%<br><br>
-	Loan Term (Years): <input type='text' name='term'><br><br>
-	Date of First Payment: <input type='date' name='start_date' id="datepicker"> mm/dd/yyyy<br><br>
-	Actual Monthly Payment: $<input type='text' name='actual'><br><br>
-
-  <h1>Calculations</h1>
-	Minimum Monthly Payment: $<span id='minimum'>0.00</span> <br><br>
-	Total Interest Paid: $<span id='total_interest'>0.00</span> <br><br>
-	Interest Saved: $<span id='interest_saved'>0.00</span> <br><br>
-	Term Shortened by: <span id='years_shortened'>0</span> years, <span id='months_shortened'>0</span> months <br><br>
+	
+  <h1>Mortgage Payoff Calculator</h1>
   
-  <table width="100%" border="1" cellpadding="0" cellspacing="0">
-    <thead>
-      <tr>
-        <th>Month</th>
-        <th>Principle</th>
-        <th>Interest</th>
-        <th>Principle Paid</th>
-        <th>Payment</th>
-        <th>Total Interest Paid</th>
-      </tr>
-  	</thead>
-    <tbody id="mortgage_table">
-    </tbody>
-	</table>
+  <div id="monthly_details">
+    <h2>Monthly Status</h2>
+    <table>
+      <thead>
+        <tr>
+          <th width="100px">Month</th>
+          <th width="100px">Principle</th>
+          <th width="100px">Interest</th>
+          <th width="100px">Principle Paid</th>
+          <th width="100px">Payment</th>
+          <th width="100px">Total Interest Paid</th>
+        </tr>
+      </thead>
+      <tbody id="mortgage_table">
+      </tbody>
+    </table>
+  </div>
+
+	<h2>Loan Details</h2>
+	<div id="mortgage_inputs">
+    <form name="loan_details">
+      <fieldset>
+        <p><label id='loan'>Loan Amount:</label> $<input type='text' name='loan'></p>
+        <p><label id='interest'>Interest Rate:</label> <input type='text' name='interest'>%</p>
+        <p><label id='term'>Loan Term (Years):</label> <input type='text' name='term'></p>
+        <p><label id='start_date'>Date of First Payment:</label> <input type='date' name='start_date' id="datepicker"></p>
+        <p><label id='actual'>Actual Monthly Payment:</label> $<input type='text' name='actual'></p>
+      </fieldset>
+    </form>
+  </div>
+
+	<h2>Calculations</h2>
+  <div id="mortgage_outputs">
+    <p><span class='label'>Minimum Payment:</span> $<span id='minimum'></span> </p>
+    <p><span class='label'>Total Interest:</span> $<span id='total_interest'></span> </p>
+    <p><span class='label'>Interest Saved:</span> $<span id='interest_saved'></span> </p>
+    <p><span class='label'>Term Shortened by:</span> <span id='years_shortened'>0</span> years, <span id='months_shortened'>0</span> months </p>
+  </div>
+  
 <!--
 	<h1>Don't forget:</h1>
 	<ul>
@@ -62,7 +76,6 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script type="text/javascript" src="jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
 	<script type="text/javascript" src="scripts/calculations.js"></script>
-  <script type="text/javascript" src="scripts/date.js"></script>
 
 	<script>
 		$(function() {

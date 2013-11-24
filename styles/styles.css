@@ -1,0 +1,72 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	background:#FFFFCC;
+	font-family: Verdana, Geneva, sans-serif;
+	color:#663300;
+	width: 1000px;
+	margin: 0px auto;
+	font-size: .8em;
+}
+
+fieldset, form {
+	border: none;
+	padding: none;
+	margin: none;
+}
+
+
+#mortgage_inputs, #mortgage_outputs {
+	width: 350px;
+	margin: 5px;
+	padding: 5px;
+	border: 2px solid #663300;
+	border-radius: 5px;
+}
+
+td {
+	border: none;
+}
+
+label, .label {
+	width: 175px;
+	float: left;
+}
+
+p {
+}
+
+h1 {
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+h2, caption {
+	font-size: 1em;
+	font-weight: bold;
+}
+
+#monthly_details {
+	width: 600px;
+	float: right;
+
+}
+
+table {
+	width: 600px;
+	border: none;
+	margin: 5px;
+	padding: 5px;
+	border: 2px solid #663300;
+	border-radius: 5px;
+
+}
+
+th {
+	background-color: white;
+}
+
+td {
+	text-align: right;
+}
