@@ -64,9 +64,13 @@ table {
 }
 
 th {
-	background-color: white;
+	background-color: #ffffff	;
 }
 
 td {
 	text-align: right;
+}
+
+tr.even {
+	background-color: #ffffff	;
 }

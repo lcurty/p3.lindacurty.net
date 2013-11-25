@@ -99,4 +99,5 @@ function calculate() {
 		$('#months_shortened').html(months_shortened);
 		$('#mortgage_table').html(mortgage_table);
 	}
+	$("tr:even").addClass("even");
 }
