@@ -74,6 +74,9 @@ function calculate() {
 			var payment					= (Number(payment)<Number(total_due))?payment:total_due;
 			var total_interest	= (parseFloat(interest_paid) + parseFloat(total_interest)).toFixed(2);
 			if(Number(principle) <= 0){
+				var set_month				= this_month.getMonth() - 1
+				this_month.setMonth(set_month);
+				var display_month		= $.datepicker.formatDate('mm/dd/yy', new Date(this_month));
 				break;
 			}
 					mortgage_table	+= 
@@ -112,6 +115,7 @@ function calculate() {
 		$('#minimum').html(minimum);
 		$('#total_interest').html(total_interest);
 		$('#interest_saved').html(interest_saved);
+		$('#new_date').html(display_month);
 		$('#years_shortened').html(years_shortened);
 		$('#months_shortened').html(months_shortened);
 		$('#mortgage_table').html(mortgage_table);
