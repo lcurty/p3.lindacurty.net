@@ -69,8 +69,11 @@ function calculate() {
 			var interest_paid		= (principle * m_interest).toFixed(2);
 			var payment					= (Number(actual) > Number(minimum))?actual:minimum;
 			var principle_paid	= (payment - interest_paid).toFixed(2);
+			var principle_paid	= (Number(principle)<Number(principle_paid))?principle:principle_paid;
+			var total_due				= (parseFloat(principle) + parseFloat(interest_paid)).toFixed(2);
+			var payment					= (Number(payment)<Number(total_due))?payment:total_due;
 			var total_interest	= (parseFloat(interest_paid) + parseFloat(total_interest)).toFixed(2);
-			if(Number(principle)<0){
+			if(Number(principle) <= 0){
 				break;
 			}
 					mortgage_table	+= 
