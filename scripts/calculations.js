@@ -83,14 +83,28 @@ function calculate() {
 															'<td>$<span class="digits2">' + total_interest + '</span></td>' +
 														'</tr>';
 			var set_month				= this_month.getMonth() + 1
-			this_month.setMonth(set_month);		
-			
+			this_month.setMonth(set_month);	
+			var new_months			= i;
+		};
+		
+		//Calculate Originals
+		var orig_principle				= loan;
+		var orig_principle_paid		= 0;
+		var orig_total_interest		= 0;
+		var orig_this_month				= new Date(start_date);								
+
+		for (var i=1; i<=months; i++){
+			var orig_principle			= (orig_principle - orig_principle_paid).toFixed(2);
+			var orig_interest_paid	= (orig_principle * m_interest).toFixed(2);
+			var orig_payment				= minimum;
+			var orig_principle_paid	= (orig_payment - orig_interest_paid).toFixed(2);
+			var orig_total_interest	= (parseFloat(orig_interest_paid) + parseFloat(orig_total_interest)).toFixed(2);
 		};
 		
 				
-		var interest_saved		= 0;
-		var years_shortened		= 0;
-		var months_shortened	= 0;
+		var interest_saved		= (parseFloat(orig_total_interest) - parseFloat(total_interest)).toFixed(2);
+		var years_shortened		= parseInt((Number(months) - Number(new_months)) / 12);
+		var months_shortened	= (months - new_months) - (years_shortened * 12);
 	
 		$('#minimum').html(minimum);
 		$('#total_interest').html(total_interest);
