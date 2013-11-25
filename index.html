@@ -42,9 +42,9 @@
 
 	<h2>Calculations</h2>
   <div id="mortgage_outputs">
-    <p><span class='label'>Minimum Payment:</span> $<span id='minimum'></span> </p>
-    <p><span class='label'>Total Interest:</span> $<span id='total_interest'></span> </p>
-    <p><span class='label'>Interest Saved:</span> $<span id='interest_saved'></span> </p>
+    <p><span class='label'>Minimum Payment:</span> $<span id='minimum' class='digits2'></span> </p>
+    <p><span class='label'>Total Interest:</span> $<span id='total_interest' class='digits2'></span> </p>
+    <p><span class='label'>Interest Saved:</span> $<span id='interest_saved' class='digits2'></span> </p>
     <p><span class='label'>Term Shortened by:</span> <span id='years_shortened'>0</span> years, <span id='months_shortened'>0</span> months </p>
   </div>
   
@@ -60,21 +60,20 @@
       <li>Add field for original and new payoff dates</li>
       <li>Graph of actual and changes</li>
       <li>Monthly details display on load</li>
-      <li>Commas</li>
-      <li>Stripe rows</li>
       <li>Page design</li>
     </ul>
     <p><strong>Idea from:</strong></p>
-    <a href="https://docs.google.com/spreadsheet/ccc?key=0AuRiQTd39nuqdGM0OHB1bmpCQTM4MFpFSTl0UVctYkE#gid=1" target="_blank">https://docs.google.com/spreadsheet/ccc?key=0AuRiQTd39nuqdGM0OHB1bmpCQTM4MFpFSTl0UVctYkE#gid=1</a>
+    <a href="https://docs.google.com/spreadsheet/ccc?key=0AuRiQTd39nuqdGM0OHB1bmpCQTM4MFpFSTl0UVctYkE#gid=1" target="_blank">Google Docs</a>
 </div>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script type="text/javascript" src="jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-	<script type="text/javascript" src="scripts/calculations.js"></script>
+<script type="text/javascript" src="scripts/calculations.js"></script>
+	<script type="text/javascript" src="scripts/jquery.number.min.js"></script>
 
 	<script>
 		$(function() {
 			$( "#datepicker" ).datepicker();
 		});
   </script>
-<body>
+</body>

@@ -76,11 +76,11 @@ function calculate() {
 					mortgage_table	+= 
 														'<tr>' +
 															'<td>' + display_month + '</td>' +
-															'<td>$' + principle + '</td>' +
-															'<td>$' + interest_paid + '</td>' +
-															'<td>$' + principle_paid + '</td>' +
-															'<td>$' + payment + '</td>' +
-															'<td>$' + total_interest + '</td>' +
+															'<td>$<span class="digits2">' + principle + '</span></td>' +
+															'<td>$<span class="digits2">' + interest_paid + '</span></td>' +
+															'<td>$<span class="digits2">' + principle_paid + '</span></td>' +
+															'<td>$<span class="digits2">' + payment + '</span></td>' +
+															'<td>$<span class="digits2">' + total_interest + '</span></td>' +
 														'</tr>';
 			var set_month				= this_month.getMonth() + 1
 			this_month.setMonth(set_month);		
@@ -99,5 +99,7 @@ function calculate() {
 		$('#months_shortened').html(months_shortened);
 		$('#mortgage_table').html(mortgage_table);
 	}
-	$("tr:even").addClass("even");
+	$('tr:even').addClass('even');
+	$('.digits2').number(true,2);
 }
+
