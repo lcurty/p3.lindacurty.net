@@ -7,7 +7,7 @@ $(document).ready(function () {
 		$('input[name=loan]').val(150000);
 		$('input[name=interest]').val(5);
 		$('input[name=term]').val(30);
-		
+		calculate();
 });
 
 function resetForms() {
@@ -67,9 +67,12 @@ function calculate() {
 			var display_month		= $.datepicker.formatDate('mm/dd/yy', new Date(this_month));
 			var principle				= (principle - principle_paid).toFixed(2);
 			var interest_paid		= (principle * m_interest).toFixed(2);
-			var payment 				= minimum;
+			var payment					= (Number(actual) > Number(minimum))?actual:minimum;
 			var principle_paid	= (payment - interest_paid).toFixed(2);
 			var total_interest	= (parseFloat(interest_paid) + parseFloat(total_interest)).toFixed(2);
+			if(Number(principle)<0){
+				break;
+			}
 					mortgage_table	+= 
 														'<tr>' +
 															'<td>' + display_month + '</td>' +
@@ -81,6 +84,7 @@ function calculate() {
 														'</tr>';
 			var set_month				= this_month.getMonth() + 1
 			this_month.setMonth(set_month);		
+			
 		};
 		
 				
