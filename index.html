@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <head>
 	<title>Mortgage Payoff Calculator</title>
+	<meta charset="utf-8">
+	<meta name = "viewport" content = "initial-scale = 1, user-scalable = no">
 	<link rel="stylesheet" href="styles/styles.css" type="text/css">
   <link rel="stylesheet" href="jquery-ui-1.10.3.custom/css/cupertino/jquery-ui-1.10.3.custom.min.css" type="text/css">
 </head>
@@ -9,6 +11,7 @@
 	
   <h1>Mortgage Payoff Calculator</h1>
   
+  <!-- Table of monthly payment details -->
   <div id="monthly_details">
     <h2>Monthly Status</h2>
     <table>
@@ -27,6 +30,7 @@
     </table>
   </div>
 
+  <!-- Inputs for generating loan calculations -->
 	<h2>Loan Details</h2>
 	<div id="mortgage_inputs">
     <form name="loan_details">
@@ -40,6 +44,7 @@
     </form>
   </div>
 
+  <!-- Loan calculation outputs -->
 	<h2>Calculations</h2>
   <div id="mortgage_outputs">
     <p><span class='label'>Minimum Payment:</span> $<span id='minimum' class='digits2'></span> </p>
@@ -48,6 +53,10 @@
     <p><span class='label'>Payoff Date:</span> <span id='new_date'></span> </p>
     <p><span class='label'>Term Shortened by:</span> <span id='years_shortened'>0</span> years, <span id='months_shortened'>0</span> months </p>
   </div>
+  
+  <!-- Graph of Monthly Payments -->
+	<!--<canvas id="payment_graph" height="300" width="400"></canvas>-->
+  <div id="payment_graph" style="width:400px; height:300px;"></div>
   
 	<h2>Don't forget:</h2>
   <div id="mortgage_outputs">
@@ -58,7 +67,6 @@
           <li>changed monthly payment (calculable field)</li>
         </ul>
       </li>
-      <li>Add field for original and new payoff dates</li>
       <li>Graph of actual and changes</li>
       <li>Page design</li>
     </ul>
@@ -68,12 +76,19 @@
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script type="text/javascript" src="jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script type="text/javascript" src="scripts/calculations.js"></script>
+	<script type="text/javascript" src="scripts/calculations.js"></script>
 	<script type="text/javascript" src="scripts/jquery.number.min.js"></script>
+	<script type="text/javascript" src="scripts/Chart.min.js"></script>
+  <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+	<!--<script type="text/javascript" src="scripts/payment_chart.js"></script>-->
 
 	<script>
+		// Instantiate jQuery UI Datepicker
 		$(function() {
 			$( "#datepicker" ).datepicker();
 		});
+		
+		
   </script>
+  
 </body>
