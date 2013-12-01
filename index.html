@@ -2,84 +2,95 @@
 <head>
 	<title>Mortgage Payoff Calculator</title>
 	<meta charset="utf-8">
-	<meta name = "viewport" content = "initial-scale = 1, user-scalable = no">
+	<!--<meta name = "viewport" content = "initial-scale = 1, user-scalable = no">-->
 	<link rel="stylesheet" href="styles/styles.css" type="text/css">
   <link rel="stylesheet" href="jquery-ui-1.10.3.custom/css/cupertino/jquery-ui-1.10.3.custom.min.css" type="text/css">
+	<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Days+One' type='text/css'>
 </head>
 
 <body>
-	
-  <h1>Mortgage Payoff Calculator</h1>
+	<header>
+  	<div class="content">
+    	<h1>Mortgage Payoff Calculator</h1>
+  	</div>
+  </header>
   
-  <!-- Table of monthly payment details -->
-  <div id="monthly_details">
-    <h2>Monthly Status</h2>
-    <table>
-      <thead>
-        <tr>
-          <th width="100px">Month</th>
-          <th width="100px">Principle</th>
-          <th width="100px">Interest</th>
-          <th width="100px">Principle Paid</th>
-          <th width="100px">Payment</th>
-          <th width="100px">Total Interest Paid</th>
-        </tr>
-      </thead>
-      <tbody id="mortgage_table">
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Inputs for generating loan calculations -->
-	<h2>Loan Details</h2>
-	<div id="mortgage_inputs">
-    <form name="loan_details">
-      <fieldset>
-        <p><label id='loan'>Loan Amount:</label> $<input type='text' name='loan'></p>
-        <p><label id='interest'>Interest Rate:</label> <input type='text' name='interest'>%</p>
-        <p><label id='term'>Loan Term (Years):</label> <input type='text' name='term'></p>
-        <p><label id='start_date'>Date of First Payment:</label> <input type='date' name='start_date' id="datepicker"></p>
-        <p><label id='actual'>Actual Monthly Payment:</label> $<input type='text' name='actual'></p>
-      </fieldset>
-    </form>
-  </div>
-
-  <!-- Loan calculation outputs -->
-	<h2>Calculations</h2>
-  <div id="mortgage_outputs">
-    <p><span class='label'>Minimum Payment:</span> $<span id='minimum' class='digits2'></span> </p>
-    <p><span class='label'>Total Interest:</span> $<span id='total_interest' class='digits2'></span> </p>
-    <p><span class='label'>Interest Saved:</span> $<span id='interest_saved' class='digits2'></span> </p>
-    <p><span class='label'>Payoff Date:</span> <span id='new_date'></span> </p>
-    <p><span class='label'>Term Shortened by:</span> <span id='years_shortened'>0</span> years, <span id='months_shortened'>0</span> months </p>
-  </div>
+	<div class="content" id="main">
   
-  <!-- Graph of Monthly Payments -->
-	<!--<canvas id="payment_graph" height="300" width="400"></canvas>-->
-  <div id="payment_graph" style="width:400px; height:300px;"></div>
+    <!-- Table of monthly payment details -->
+    <div id="monthly_details">
+      <h2>Amortization Schedule</h2>
+      <form name="amoritization" id="amoritization">
+        <table>
+          <thead>
+            <tr>
+              <th width="65">Month</th>
+              <th width="85">Principle</th>
+              <th width="70">Interest</th>
+              <th width="75">Principle Paid</th>
+              <th width="70">Payment</th>
+              <th width="75">Total Interest Paid</th>
+              <th width="105">One-Time Extra Payment</th>
+              <th width="105">Changed Monthly Payment</th>
+            </tr>
+          </thead>
+          <tbody id="mortgage_table">
+          </tbody>
+        </table>
+      </form>
+    </div>
   
-	<h2>Don't forget:</h2>
-  <div id="mortgage_outputs">
-    <ul>
-      <li>Loop through by month showing
-        <ul>
-          <li>one-time extra payment	(calculable field)</li>
-          <li>changed monthly payment (calculable field)</li>
-        </ul>
-      </li>
-      <li>Graph of actual and changes</li>
-      <li>Page design</li>
-    </ul>
-    <p><strong>Idea from:</strong></p>
-    <a href="https://docs.google.com/spreadsheet/ccc?key=0AuRiQTd39nuqdGM0OHB1bmpCQTM4MFpFSTl0UVctYkE#gid=1" target="_blank">Google Docs</a>
-</div>
+    <!-- Inputs for generating loan calculations -->
+    <h2>Loan Details</h2>
+    <div id="mortgage_inputs">
+      <form name="loan_details">
+        <fieldset>
+          <p><label id='loan'>Loan Amount</label><br>$<input type='text' name='loan'></p>
+          <p><label id='interest'>Interest Rate</label><br><input type='text' name='interest'>%</p>
+          <p><label id='term'>Loan Term (Years)</label><br><input type='text' name='term'></p>
+          <p><label id='start_date'>Date of First Payment</label><br><input type='date' name='start_date' id="datepicker"></p>
+          <p><label id='actual'>Actual Monthly Payment</label><br>$<input type='text' name='actual'></p>
+        </fieldset>
+      </form>
+    </div>
+  
+    <!-- Loan calculation outputs -->
+    <h2>Calculations</h2>
+    <div id="mortgage_outputs">
+      <p><span class='label'>Minimum Payment</span><br>$<span id='minimum' class='digits2'></span> </p>
+      <p><span class='label'>Total Interest</span><br>$<span id='total_interest' class='digits2'></span> </p>
+      <p><span class='label'>Interest Saved</span><br>$<span id='interest_saved' class='digits2'></span> </p>
+      <p><span class='label'>Payoff Date</span><br><span id='new_date'></span> </p>
+      <p><span class='label'>Term Shortened by</span><br><span id='years_shortened'>0</span> years, <span id='months_shortened'>0</span> months </p>
+    </div>
+    
+    <!-- Graph of Monthly Payments -->
+    <!--<canvas id="payment_graph" height="300" width="400"></canvas>-->
+    <!--<div id="payment_graph" style="width:400px; height:300px;"></div>-->
+    
+    <h2>Don't forget:</h2>
+    <div id="mortgage_outputs">
+      <ul>
+        <li>Loop through by month showing
+          <ul>
+            <li>one-time extra payment	(calculable field)</li>
+            <li>changed monthly payment (calculable field)</li>
+          </ul>
+        </li>
+        <li>Graph of actual and changes</li>
+        <li>Page design</li>
+      </ul>
+      <p><strong>Idea from:</strong></p>
+      <a href="https://docs.google.com/spreadsheet/ccc?key=0AuRiQTd39nuqdGM0OHB1bmpCQTM4MFpFSTl0UVctYkE#gid=1" target="_blank">Google Docs</a>
+    </div>
+	</div>
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script type="text/javascript" src="jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
 	<script type="text/javascript" src="scripts/calculations.js"></script>
 	<script type="text/javascript" src="scripts/jquery.number.min.js"></script>
-	<script type="text/javascript" src="scripts/Chart.min.js"></script>
-  <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+	<!--<script type="text/javascript" src="scripts/Chart.min.js"></script>-->
+  <!--<script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>-->
 	<!--<script type="text/javascript" src="scripts/payment_chart.js"></script>-->
 
 	<script>
@@ -87,8 +98,6 @@
 		$(function() {
 			$( "#datepicker" ).datepicker();
 		});
-		
-		
   </script>
   
 </body>

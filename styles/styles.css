@@ -2,26 +2,54 @@
 /* CSS Document */
 
 body {
-	background:#FFFFCC;
+	/*background-color: #EEEEEE;*/
+	background-image:url(../images/bg01.png);
 	font-family: Verdana, Geneva, sans-serif;
-	color:#663300;
+	color:#777777;
+	font-size: .7em;
+	width:100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+header {
+	/*background-image:url(../images/pattern-292t.png);*/
+	width: 100%;
+	height: 60px;
+	margin: 0px;
+	padding: 0px;
+	vertical-align:bottom;
+}
+
+.content {
 	width: 1000px;
 	margin: 0px auto;
-	font-size: .8em;
+	padding: 10px;
+}
+
+#main {
+	background: #FFFFFF;
+	border: #99CCBB solid 2px;
+	/*box-shadow: 0px 0px 5px 5px #DDDDDD;*/
+	border-radius: 5px;
 }
 
 fieldset, form {
 	border: 0px;
 	padding: 0px;
 	margin: 0px;
+	color: #777777;
 }
 
+input {
+	width: 100px;
+}
 
 #mortgage_inputs, #mortgage_outputs {
-	width: 350px;
+	width: 175px;
 	margin: 5px;
-	padding: 5px;
-	border: 2px solid #663300;
+	padding: 5px 15px;
+	border: 2px solid #99CCBB;
 	border-radius: 5px;
 }
 
@@ -30,41 +58,51 @@ td {
 }
 
 label, .label {
-	width: 175px;
+	color:#99CCBB;
 	float: left;
+	font-size: 0.8em;
+	font-weight:bold;
 }
 
 p {
 }
 
 h1 {
-	font-size: 1.1em;
+	font-family: 'Days One', sans-serif;
+	color: #FFFFFF;
+	text-shadow: #aaaaaa;
+	font-size: 1.9em;
 	font-weight: bold;
+	vertical-align: bottom;
 }
 
 h2, caption {
+	color:#99CCBB;
 	font-size: 1em;
 	font-weight: bold;
 }
 
 #monthly_details {
-	width: 600px;
+	width: 745px;
+	max-width: 745px;
 	float: right;
-
+	margin-right: 10px;
 }
 
 table {
-	width: 600px;
+	width: 745px;
+	max-width: 745px;
 	border: none;
 	margin: 5px;
 	padding: 5px;
-	border: 2px solid #663300;
+	border: 2px solid #99CCBB;
 	border-radius: 5px;
 
 }
 
 th {
-	background-color: #ffffff	;
+	background-color: #99CCBB;
+	color: #ffffff;
 }
 
 td {
@@ -72,5 +110,5 @@ td {
 }
 
 tr.even {
-	background-color: #ffffff	;
+	background-color: #EBF5F2;
 }
