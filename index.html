@@ -16,6 +16,15 @@
   
 	<div class="content" id="main">
   
+  	<div id="instructions">
+      <h2>Instructions For Calculating Payoff of Your Fixed Rate Mortgage</h2>
+      <p class="bold">Press the return key after entering any value to calculate your adjusted mortgage payoff.</p>
+      <p>To calculate your mortgage payments, you need to know a few details about the loan. At a minimum, you need to know the <span class="bold">value</span> of the loan, the <span class="bold">interest rate</span>, and the <span class="bold">term of the loan</span> in years. If you have the <span class="bold">date</span> of the first payment, you can include that; otherwise the current date is assumed. If you consistently pay above the minimum payment, enter that value as the <span class="bold">increased actual monthly payment</span>.</p>
+      <p>The <span class="bold">minimum payment, <span class="bold">total interest</span>, <span class="bold">interest saved</span>, <span class="bold">payoff date</span>, and <span class="bold">decrease to your loan term</span> will be displayed in the Calculations box.</p>
+      <p>The resulting <span class="bold">Amortization Schedule</span> will be displayed in the table to the right. You may enter any <span class="bold">one-time increases</span> to your payment or any <span class="bold">changes to your payment</span> going forward. Press the return key after entering your data to recalculate your loan. These changes will also be reflected in the <span class="bold">Calculations box</span>.</p>
+      <p>At any time, you can toggle between the amortization schedule and a graph of your original and adjusted premium reduction by clicking the tabs under Amortization Schedule.</p>
+  	</div>
+  
     <!-- Table of monthly payment details -->
     <div id="monthly_details">
       <h2>Amortization Schedule</h2>
@@ -62,7 +71,7 @@
           <p><label id='interest'>Interest Rate</label><br><input type='text' name='interest'>%</p>
           <p><label id='term'>Loan Term (Years)</label><br><input type='text' name='term'></p>
           <p><label id='start_date'>Date of First Payment</label><br><input type='date' name='start_date' id="datepicker"></p>
-          <p><label id='actual'>Actual Monthly Payment</label><br>$<input type='text' name='actual'></p>
+          <p><label id='actual'>Increased Actual Monthly Payment</label><br>$<input type='text' name='actual'></p>
         </fieldset>
       </form>
     </div>
@@ -81,7 +90,7 @@
         
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script type="text/javascript" src="jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+  <script type="text/javascript" src="scripts/highcharts.js"></script>
 	<script type="text/javascript" src="scripts/calculations.js"></script>
 	<script type="text/javascript" src="scripts/jquery.number.min.js"></script>
 

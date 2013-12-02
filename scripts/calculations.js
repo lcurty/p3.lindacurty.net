@@ -16,8 +16,6 @@ function resetForms() {
 
 // Listeners
 $(document).on('change', 'input', calculate);
-//$('input').keyup(calculate);
-//$('input[type=date]').change(calculate);
 
 // Calculation function
 function calculate() {
@@ -155,8 +153,18 @@ function calculate() {
 				text: 'Principle Reduction' ,
 				style: { color: '#447D79' }
 			},
-			xAxis: { title: { text: 'Months' }, },
-			yAxis: { title: { text: '' } },
+			xAxis: { 
+				title: { 
+					text: 'Months', 
+					style: { color: '#555555' }
+				}
+			},
+			yAxis: {
+				title: { 
+					text: 'Principle', 
+					style: { color: '#555555' }
+				}
+			},
 			series: [{
 					name: 'Original Value',
 					data: orig_arr,
@@ -170,7 +178,10 @@ function calculate() {
 				area: {
 					marker: {enabled: false}
 				}
-			}
+			},
+			legend: {
+				itemStyle: { color: '#555555' }
+			},
 	});
 
 }
