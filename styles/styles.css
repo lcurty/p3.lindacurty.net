@@ -25,6 +25,7 @@ header {
 	width: 1000px;
 	margin: 0px auto;
 	padding: 10px;
+	height: 100%;
 }
 
 #main {
@@ -32,6 +33,7 @@ header {
 	border: #99CCBB solid 2px;
 	/*box-shadow: 0px 0px 5px 5px #DDDDDD;*/
 	border-radius: 5px;
+	overflow:hidden;
 }
 
 fieldset, form {
@@ -43,14 +45,13 @@ fieldset, form {
 
 input {
 	width: 100px;
+	color:#444444;
+	font-size: 1em;
 }
 
 #mortgage_inputs, #mortgage_outputs {
 	width: 175px;
-	margin: 5px;
 	padding: 5px 15px;
-	border: 2px solid #99CCBB;
-	border-radius: 5px;
 }
 
 td {
@@ -82,31 +83,41 @@ h2, caption {
 	font-weight: bold;
 }
 
+.border{
+	border: 2px solid #99CCBB;
+	-moz-border-radius:10px;
+  -webkit-border-radius:10px;
+	border-radius: 10px;
+	padding: 5px;
+}
+
 #monthly_details {
-	width: 745px;
-	max-width: 745px;
+	width: 770px;
+	max-width: 770px;
 	float: right;
 	margin-right: 10px;
 }
 
 table {
-	width: 745px;
-	max-width: 745px;
-	border: none;
-	margin: 5px;
-	padding: 5px;
-	border: 2px solid #99CCBB;
+	width: 100%;
+	border: 1px solid #99CCBB;
+	-moz-border-radius:5px;
+  -webkit-border-radius:5px;
 	border-radius: 5px;
-
+	border-spacing: 0px;
+	margin: 0px auto;
 }
 
 th {
 	background-color: #99CCBB;
 	color: #ffffff;
+	text-align: center;
+	padding: 2px;
 }
 
 td {
 	text-align: right;
+	padding: 2px 5px;
 }
 
 tr.even {
