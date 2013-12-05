@@ -15,7 +15,7 @@ function resetForms() {
 }
 
 // Listeners
-$(document).on('change', 'input', calculate);
+$('button').click(calculate);
 
 // Calculation function
 function calculate() {
@@ -43,26 +43,67 @@ function calculate() {
 	var start_date							= $('input[name=start_date]').val();
 	var actual									= $('input[name=actual]').val();
 
-	// Populate arrays for Amoritization Table fields
+	// Populate arrays for and error check Amoritization Table fields
+	
+	var ot											= 1;
 	$('.one_time').each(function() {
 			one_time_arr.push(this.value);
+			var value = $(this).val().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+			var intRegex = /^\d+$/;
+			if(!intRegex.test(value)) {
+				error 								+= "<p>One Time Payment Value on Payment " + ot + " must be numeric.</p>";
+				}
+			ot++;
 	});
+	
+	var cp											= 1;
 	$('.chng_payment').each(function() {
 			chng_payment_arr.push(this.value);
+			var value = $(this).val().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+			var intRegex = /^\d+$/;
+			if(!intRegex.test(value)) {
+				error 								+= "<p>Change Payment Value on Payment " + cp + " must be numeric.</p>";
+				}
+			cp++;
 	});
-				
-	// Calculate minimum payment
-	if($('input[name=start_date]').val() === "")
+	
+	//Error checking on Loan Inputs		
+	if($('input[name=start_date]').val() === "") {
 		var start_date					= new Date();
+	} else {
+		var txtVal =  start_date;
+		if(!isDate(txtVal))
+			error 								+= "<p>Please enter a valid date. mm/dd/yyyy</p>";
+	}
 	if($('input[name=loan]').val() === "") {
 		error		 								+= "<p>Enter Loan Value</p>";
+	} else {
+		var value = $('input[name=loan]').val().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+    var intRegex = /^\d+$/;
+		if(!intRegex.test(value)) {
+			error 								+= "<p>Loan Value must be numeric.</p>";
+		}
 	}
 	if ($('input[name=interest]').val() === "") {
 		error 									+= "<p>Enter Interest Rate</p>";
+	} else {
+		var value = $('input[name=interest]').val().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+    var intRegex = /^\d+$/;
+		if(!intRegex.test(value)) {
+			error 								+= "<p>Interest Rate must be numeric.</p>";
+		}
 	}
 	if($('input[name=term]').val() === "") {
 		error 									+= "<p>Enter Length of Loan in Years</p>";
+	} else {
+		var value = $('input[name=term]').val().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+    var intRegex = /^\d+$/;
+		if(!intRegex.test(value)) {
+			error 								+= "<p>Length of Loan must be numeric.</p>";
+		}
 	}
+	
+	// Calculate payment details
 	var m_interest						= interest / 1200;
 	var months								= term * 12;
 	var n_interest						= Math.pow((1 + m_interest),(months));
@@ -71,11 +112,26 @@ function calculate() {
 	var principle_paid				= 0;
 	var total_interest				= 0;
 	var this_month						= new Date(start_date);								
+	var payment								= (Number(actual) > Number(minimum))?actual:minimum;
+	
+	// Set-up Original Values
 	var orig_principle				= loan;
 	var orig_principle_paid		= 0;
 	var orig_total_interest		= 0;
-	var payment								= (Number(actual) > Number(minimum))?actual:minimum;
 	
+	// Error checking on Actual Monthly Payment
+	if($('input[name=actual]').val() != "") {
+		var value = $('input[name=actual]').val().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+    var intRegex = /^\d+$/;
+		if(!intRegex.test(value)) {
+			error 								+= "<p>Actual Monthly Value must be numeric.</p>";
+		} else if(Number(actual) < Number(minimum)) {
+			intended_actual					= (Number(minimum) + Number(actual)).toFixed(2);
+			error 									+= "<p>If entered, Actual Monthly Value must be greater than minimum value. For instance, if your minimum payment is $" + minimum + ", and you actually pay $" + intended_actual + ", you should enter $" + intended_actual + " rather than $" + actual + ".</p>";
+		}
+	}
+	
+	// Loop through Calculations for Amoritization Table
 	for (var i=1; i<=months; i++){
 		var display_month				= $.datepicker.formatDate('mm/dd/yy', new Date(this_month));
 		var principle						= (principle - principle_paid).toFixed(2);
@@ -103,6 +159,7 @@ function calculate() {
 		if(Number(principle) > 0) {
 			mortgage_table				+= 
 															'<tr>' +
+																'<td class="center">' + i + '</td>' +
 																'<td>' + display_month + '</td>' +
 																'<td>$<span class="digits2">' + principle + '</span></td>' +
 																'<td>$<span class="digits2">' + interest_paid + '</span></td>' +
@@ -184,4 +241,36 @@ function calculate() {
 			},
 	});
 
+}
+
+function isDate(txtDate) {
+	var currVal = txtDate;
+	if(currVal == '')
+		return false;
+ 
+	//Declare Regex 
+	var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
+	var dtArray = currVal.match(rxDatePattern); // is format OK?
+ 
+	if (dtArray == null)
+		return false;
+	
+	//Checks for mm/dd/yyyy format.
+	dtMonth = dtArray[1];
+	dtDay= dtArray[3];
+	dtYear = dtArray[5];
+ 
+	if (dtMonth < 1 || dtMonth > 12)
+		return false;
+	else if (dtDay < 1 || dtDay> 31)
+		return false;
+	else if ((dtMonth==4 || dtMonth==6 || dtMonth==9 || dtMonth==11) && dtDay ==31)
+		return false;
+	else if (dtMonth == 2)
+	{
+		 var isleap = (dtYear % 4 == 0 && (dtYear % 100 != 0 || dtYear % 400 == 0));
+		 if (dtDay> 29 || (dtDay ==29 && !isleap))
+			return false;
+	}
+	return true;
 }

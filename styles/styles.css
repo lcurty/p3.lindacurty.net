@@ -29,7 +29,8 @@ header {
 #main {
 	background: #FFFFFF;
 	border: #99CCBB solid 2px;
-	/*box-shadow: 0px 0px 5px 5px #DDDDDD;*/
+	-moz-border-radius:5px;
+  -webkit-border-radius:5px;
 	border-radius: 5px;
 	overflow:hidden;
 }
@@ -91,6 +92,33 @@ label, .label {
 	font-weight:bold;
 }
 
+button {
+	padding: 3px 10px;
+	width: 150px;
+	margin: 10px 20px;
+	text-align: center;
+	-moz-border-radius:5px;
+  -webkit-border-radius:5px;
+	border-radius: 5px;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#BBBBBB), to(#DDDDDD)); 
+	background: -webkit-linear-gradient(top, #BBBBBB, #DDDDDD);
+	background: -moz-linear-gradient(top, #BBBBBB, #DDDDDD); 
+	background: -ms-linear-gradient(top, #BBBBBB, #DDDDDD); 
+	background: -o-linear-gradient(top, #BBBBBB, #DDDDDD);	
+	border: 1px solid #555555;
+	color: #555555;
+}
+
+button:hover {
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#447D79), to(#99CCBB)); 
+	background: -webkit-linear-gradient(top, #447D79, #99CCBB);
+	background: -moz-linear-gradient(top, #447D79, #99CCBB); 
+	background: -ms-linear-gradient(top, #447D79, #99CCBB); 
+	background: -o-linear-gradient(top, #447D79, #99CCBB);	
+	border: 1px solid #447D79;
+	color: #FFFFFF;
+}
+
 .border{
 	border: 2px solid #99CCBB;
 	-moz-border-radius:10px;
@@ -125,6 +153,10 @@ th {
 
 td {
 	text-align: right;
+}
+
+td.center {
+	text-align: center;
 }
 
 .narrow {
