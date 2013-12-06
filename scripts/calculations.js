@@ -37,33 +37,41 @@ function calculate() {
   var month_arr 							= new Array();
 
 	// Data
-	var loan										= $('input[name=loan]').val();
+	var loan										= $('input[name=loan]').val().replace(/[$,]/g, '');
 	var interest 								= $('input[name=interest]').val();
 	var term										= $('input[name=term]').val();
 	var start_date							= $('input[name=start_date]').val();
-	var actual									= $('input[name=actual]').val();
+	var actual									= $('input[name=actual]').val().replace(/[$,]/g, '');
 
 	// Populate arrays for and error check Amoritization Table fields
 	
 	var ot											= 1;
 	$('.one_time').each(function() {
-			one_time_arr.push(this.value);
-			var value = $(this).val().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-			var intRegex = /^\d+$/;
-			if(!intRegex.test(value)) {
-				error 								+= "<p>One Time Payment Value on Payment " + ot + " must be numeric.</p>";
+			if(this.value != ''){
+				one_time_arr.push(this.value.replace(/[$,]/g, ''));
+				var value = $(this).val().replace(/^\s\s*/, '').replace(/\s\s*$/, '').replace(/[$.,]/g, '');
+				var intRegex = /^\d+$/;
+				if(!intRegex.test(value)) {
+					error 								+= "<p>One Time Payment Value on Payment " + ot + " must be numeric.</p>";
 				}
+			} else {
+				one_time_arr.push(0);
+			}
 			ot++;
 	});
 	
 	var cp											= 1;
 	$('.chng_payment').each(function() {
-			chng_payment_arr.push(this.value);
-			var value = $(this).val().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-			var intRegex = /^\d+$/;
-			if(!intRegex.test(value)) {
-				error 								+= "<p>Change Payment Value on Payment " + cp + " must be numeric.</p>";
+			if(this.value != ''){
+				chng_payment_arr.push(this.value.replace(/[$,]/g, ''));
+				var value = $(this).val().replace(/^\s\s*/, '').replace(/\s\s*$/, '').replace(/[$.,]/g, '');
+				var intRegex = /^\d+$/;
+				if(!intRegex.test(value)) {
+					error 								+= "<p>Change Payment Value on Payment " + cp + " must be numeric.</p>";
 				}
+			} else {
+				one_time_arr.push(0);
+			}
 			cp++;
 	});
 	
@@ -78,7 +86,7 @@ function calculate() {
 	if($('input[name=loan]').val() === "") {
 		error		 								+= "<p>Enter Loan Value</p>";
 	} else {
-		var value = $('input[name=loan]').val().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+		var value = $('input[name=loan]').val().replace(/^\s\s*/, '').replace(/\s\s*$/, '').replace(/[$.,]/g, '');
     var intRegex = /^\d+$/;
 		if(!intRegex.test(value)) {
 			error 								+= "<p>Loan Value must be numeric.</p>";
@@ -87,7 +95,7 @@ function calculate() {
 	if ($('input[name=interest]').val() === "") {
 		error 									+= "<p>Enter Interest Rate</p>";
 	} else {
-		var value = $('input[name=interest]').val().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+		var value = $('input[name=interest]').val().replace(/^\s\s*/, '').replace(/\s\s*$/, '').replace(/[.]/g, '');
     var intRegex = /^\d+$/;
 		if(!intRegex.test(value)) {
 			error 								+= "<p>Interest Rate must be numeric.</p>";
@@ -96,7 +104,7 @@ function calculate() {
 	if($('input[name=term]').val() === "") {
 		error 									+= "<p>Enter Length of Loan in Years</p>";
 	} else {
-		var value = $('input[name=term]').val().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+		var value = $('input[name=term]').val().replace(/^\s\s*/, '').replace(/\s\s*$/, '').replace(/[.]/g, '');
     var intRegex = /^\d+$/;
 		if(!intRegex.test(value)) {
 			error 								+= "<p>Length of Loan must be numeric.</p>";
@@ -121,7 +129,7 @@ function calculate() {
 	
 	// Error checking on Actual Monthly Payment
 	if($('input[name=actual]').val() != "") {
-		var value = $('input[name=actual]').val().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+		var value = $('input[name=actual]').val().replace(/^\s\s*/, '').replace(/\s\s*$/, '').replace(/[$.,]/g, '');
     var intRegex = /^\d+$/;
 		if(!intRegex.test(value)) {
 			error 								+= "<p>Actual Monthly Value must be numeric.</p>";
@@ -186,7 +194,7 @@ function calculate() {
 	// Calculations for adjustments				
 	var interest_saved		= (parseFloat(orig_total_interest) - parseFloat(total_interest)).toFixed(2);
 	var years_shortened		= parseInt((Number(months) - Number(new_months)) / 12);
-	var months_shortened	= (months - new_months) - (years_shortened * 12);
+	var months_shortened	= parseInt((months - new_months) - (years_shortened * 12));
 	
 	// Print to page
 	$('#minimum').html(minimum);
