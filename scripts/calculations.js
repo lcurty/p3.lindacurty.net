@@ -167,15 +167,15 @@ function calculate() {
 		if(Number(principle) > 0) {
 			mortgage_table				+= 
 															'<tr>' +
-																'<td class="center">' + i + '</td>' +
-																'<td>' + display_month + '</td>' +
-																'<td>$<span class="digits2">' + principle + '</span></td>' +
-																'<td>$<span class="digits2">' + interest_paid + '</span></td>' +
-																'<td>$<span class="digits2">' + principle_paid + '</span></td>' +
-																'<td>$<span class="digits2">' + payment + '</span></td>' +
-																'<td>$<span class="digits2">' + total_interest + '</span></td>' +
-																'<td><input type="text" name="one_time' + i + '" value="' + this_one_time + '" class="one_time"></td>' +
-																'<td><input type="text" name="chng_payment' + i + '" value="' + this_chng_payment + '" class="chng_payment"></td>' +
+																'<td class="narrow">' + i + '</td>' +
+																'<td class="mid">' + display_month + '</td>' +
+																'<td class="mid">$<span class="digits2">' + principle + '</span></td>' +
+																'<td class="mid">$<span class="digits2">' + interest_paid + '</span></td>' +
+																'<td class="mid">$<span class="digits2">' + principle_paid + '</span></td>' +
+																'<td class="mid">$<span class="digits2">' + payment + '</span></td>' +
+																'<td class="mid">$<span class="digits2">' + total_interest + '</span></td>' +
+																'<td class="wide"><input type="text" name="one_time' + i + '" value="' + this_one_time + '" class="one_time"></td>' +
+																'<td class="wide"><input type="text" name="chng_payment' + i + '" value="' + this_chng_payment + '" class="chng_payment"></td>' +
 															'</tr>';
 					payment						= fix_payment;
 			var new_date					= $.datepicker.formatDate('mm/dd/yy', new Date(this_month));
